@@ -1,0 +1,13 @@
+package br.net.abner.garcon.server;
+
+public class GarconRest {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
