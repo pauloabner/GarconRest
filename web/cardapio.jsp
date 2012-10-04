@@ -15,17 +15,18 @@
 <body>
 	<div data-role="page">
 		<div data-role="header" align="center">Cardápip</div>
-		<div data-role="content">
+		<div data-role="content" id="content">
 			<a href="index.jsp?numeroMesa=<%=request.getParameter("numeroMesa")%>" data-role="button" data-icon="arrow-l" >Voltar</a>			
-			<a href="cardapio.jsp?numeroMesa=<%=request.getParameter("numeroMesa")%>" data-role="button" data-iconpos="right" data-icon="arrow-r" >Cardápio</a>
-		</div>
+		</div>		
 		<script>
-		$(document).ready(function(){
-			$.getJSON("http://localhost:8080/GarconRest/cxf/mesaService/categorias",					  
+		$(document).bind("pageinit",function(){
+			$.getJSON(url+"/cxf/mesaService/categorias",					  
 					  function(data) {
-					    $.each(data.Categoria, function(i,item){					      
-					    $("<a/>").attr("href", item.descricao).appendTo("#content");
-					    });
+					    $.each(data.Categoria, function(i,item){
+					    var text = "<a href='cardapio.jsp?numeroMesa=<%=request.getParameter("numeroMesa")%>&categoriaId="+item.id+"' data-role='button' data-iconpos='right' data-icon='arrow-r' >"
+					    		+item.descricao+"</a>";
+					    $("#content").append(text).trigger("create");
+					    })
 					  });
 		});			
 			
